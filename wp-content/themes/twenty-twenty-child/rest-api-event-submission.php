@@ -1,13 +1,15 @@
 <?php
 
 /* Register endpoint api to submit events from frontend form */
-add_action('rest_api_init', function () {
-    register_rest_route('v1/events', '/submit', [
+
+add_action('rest_api_init', 'fn_register_rest_submit_form');
+function fn_register_rest_submit_form() {
+	register_rest_route('v1/events', '/submit', [
         'methods' => 'POST',
         'callback' => 'handle_event_submission',
         'permission_callback' => '__return_true',
     ]);
-});
+}
 
 function handle_event_submission(WP_REST_Request $request) {
 	

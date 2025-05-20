@@ -1,8 +1,7 @@
 <?php
 // Load default jquery min on header
 add_filter('wp_enqueue_scripts', 'insert_jquery', 1);
-function insert_jquery()
-{
+function insert_jquery() {
     wp_enqueue_script('jquery', false, array(), false, false);
 }
 /*Rest API*/
@@ -145,6 +144,7 @@ function render_ticket_price_box($post) {
 // Save meta boxes values
 add_action('save_post', 'fn_save_event_meta_boxes');
 function fn_save_event_meta_boxes($post_id) {
+	
     if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
 
     if (get_post_type($post_id) != 'event') return;
@@ -251,8 +251,8 @@ function fn_enqueue_custom_scripts() {
 }
 
 // Backend register script
-add_action('admin_enqueue_scripts', 'enqueue_admin_event_datetime_scripts',99);
-function enqueue_admin_event_datetime_scripts($hook) {
+add_action('admin_enqueue_scripts', 'fn_enqueue_admin_event_datetime_scripts',99);
+function fn_enqueue_admin_event_datetime_scripts() {
     global $post_type;
 
     if ($post_type === 'event') {

@@ -129,8 +129,8 @@ function fn_modify_post_query($query) {
 
 
 /* Register custom roles start */
-add_action('init', 'register_custom_event_roles');
-function register_custom_event_roles() {
+add_action('init', 'fn_register_custom_event_roles');
+function fn_register_custom_event_roles() {
     
     // Who only submit events
     add_role('event_submitter', 'Event Submitter', [
@@ -169,9 +169,11 @@ function register_custom_event_roles() {
 }
 
 // This will add all Capabilities to wordpress admin
-add_action('admin_init', function () {
-    $role = get_role('administrator');
 
+add_action('admin_init', 'fn_add_admin_capabilities');
+function fn_add_admin_capabilities() {
+	
+	$role = get_role('administrator');
     if ($role) {
         $caps = [
             'edit_event',
@@ -193,5 +195,5 @@ add_action('admin_init', function () {
             $role->add_cap($cap);
         }
     }
-});
+}
 /* Register custom roles end */
