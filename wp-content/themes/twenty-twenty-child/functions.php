@@ -1,5 +1,4 @@
 <?php
-
 // Load default jquery min on header
 add_filter('wp_enqueue_scripts', 'insert_jquery', 1);
 function insert_jquery()
